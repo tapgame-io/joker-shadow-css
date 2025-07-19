@@ -2,6 +2,7 @@
   "name": "joker-shadow-css",
   "version": "1.0.1",
   "description": "An vite plugin to inject css to shadow-dom after build application",
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +12,7 @@
     "package.json"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts --minify",
+    "build": "rm -rf dist && tsup src/index.ts --format esm --dts --minify",
     "dev": "tsup src/index.ts --format esm --dts --watch",
     "bump": "pnpm version patch",
     "release": "pnpm run bump && pnpm run build  && pnpm publish",
