@@ -1,0 +1,36 @@
+{
+  "name": "joker-shadow-css",
+  "version": "1.0.0",
+  "description": "An vite plugin to inject css to shadow-dom after build application",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --minify",
+    "dev": "tsup src/index.ts --format esm --dts --watch",
+    "bump": "pnpm version patch",
+    "release": "pnpm run bump && pnpm publish",
+    "local-pack": "pnpm run build && pnpm pack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tapgame-io/joker-shadow-css.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tapgame-io/joker-shadow-css/issues"
+  },
+  "homepage": "https://github.com/tapgame-io/joker-shadow-css#readme",
+  "devDependencies": {
+    "@types/node": "^24.0.15",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.5"
+  }
+}
