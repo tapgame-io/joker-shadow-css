@@ -6,8 +6,7 @@ import { existsSync, readFileSync, writeFileSync } from 'fs';
  * Insert CSS to JS placeholder in target file, for fine using css with shadow-dom
  * @param getCss - function that returns CSS
  * @param options - options
- * @param options.originalTargetFile - path to target file
- * @param options.targetDir - path to target directory
+ * @param options.targetFile - path to target file
  * @param options.placeholder - placeholder to replace with CSS
  * @param options.apply - apply plugin to build or serve
  * @returns Vite plugin
@@ -15,17 +14,16 @@ import { existsSync, readFileSync, writeFileSync } from 'fs';
  * @example
  * ```ts
  * insertCssToJsPlaceholderPlugin(() => collectedCss, {
- *     originalTargetFile: 'integration.es.js',
- *     targetDir: 'dist',
+ *     targetFile: resolve(resolve(__dirname, 'dist'), 'integration.es.js'),
+ *     placeholder: '"APP_STYLES_PLACEHOLDER"',
  * });
  * ```
  */
 function insertCssToJsPlaceholderPlugin(
   getCss: () => string,
   options: {
-      originalTargetFile: string;
+    targetFile: string;
       placeholder: string;
-      targetDir: string;
       apply?: Plugin['apply'];
   },
 ): Plugin {
@@ -35,8 +33,7 @@ function insertCssToJsPlaceholderPlugin(
       closeBundle() {
           const css = getCss();
 
-          const distDir = resolve(__dirname, options.targetDir);
-          const targetFile = resolve(distDir, options.originalTargetFile);
+          const targetFile = options.targetFile;
 
           // Patch target file
           if (existsSync(targetFile)) {

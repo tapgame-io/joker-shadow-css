@@ -26,9 +26,8 @@ defineConfig({
           },
       }),
       insertCssToJsPlaceholderPlugin(() => collectedCss, {
-          originalTargetFile: 'integration.es.js',
+          targetFile: resolve(resolve(__dirname, 'dist'), 'integration.es.js'),
           placeholder: '"APP_STYLES_PLACEHOLDER"',
-          targetDir: 'dist',
       }),
   ],
 )}
